@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout_main_activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".ui.MainActivity">
+
+    <TextClock
+        android:id="@+id/main_activity_text_clock"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/aldrich"
+        android:gravity="center_horizontal"
+        android:textSize="80sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/main_activity_location_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center_horizontal"
+        android:text="wait..."
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_text_clock" />
+
+    <TextView
+        android:id="@+id/main_activity_temperature_text_view"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="wait.."
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_location_text_view" />
+
+    <TextView
+        android:id="@+id/main_activity_description"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="wait.."
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_temperature_text_view" />
+
+    <TextView
+        android:id="@+id/main_activity_pressure"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="wait.."
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_description" />
+
+    <TextView
+        android:id="@+id/main_activity_humidity"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="wait.."
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_pressure" />
+
+    <TextView
+        android:id="@+id/main_activity_wind"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="wait.."
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_humidity" />
+
+    <TextView
+        android:id="@+id/main_activity_cloudiness"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="wait.."
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_wind" />
+
+    <TextView
+        android:id="@+id/main_activity_sunrise"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="wait.."
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_cloudiness" />
+
+    <TextView
+        android:id="@+id/main_activity_sunset"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="wait.."
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_sunrise" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
