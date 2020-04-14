@@ -8,5 +8,11 @@
     <string name="cloudiness">Cloudiness</string>
     <string name="sunrise">Sunrise</string>
     <string name="sunset">Sunset</string>
+    <string name="location_permission_info">This app need location permission</string>
+    <string name="no_location_detected_info">no_location_detected</string>
+    <string name="generic_error">Generic error</string>
+    <string name="network_error">Network error</string>
+    <string name="location_permission_question">Grant location permission?</string>
+    <string name="yes">Yes</string>
 
 </resources>

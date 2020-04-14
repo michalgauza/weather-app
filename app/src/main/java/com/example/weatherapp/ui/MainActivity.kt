@@ -1,17 +1,11 @@
 package com.example.weatherapp.ui
 
 import android.Manifest
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.provider.Settings
 import android.util.Log
 import android.view.View
@@ -19,48 +13,44 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
-import com.bumptech.glide.Glide
 import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.vm.MainActivityViewModel
 import com.example.weatherapp.R
 import com.example.weatherapp.extensions.toFormattedTemp
-import com.example.weatherapp.extensions.toTwoPlaces
 import com.example.weatherapp.net.ResponseWrapper
 import com.example.weatherapp.net.model.WeatherResponse
 import com.google.android.gms.location.*
 import com.google.android.material.snackbar.Snackbar
-import io.ktor.util.toLocalDateTime
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.concurrent.fixedRateTimer
 
 class MainActivity : AppCompatActivity() {
 
     private val viewModel by inject<MainActivityViewModel>()
 
-    val PERMISSIONS_REQUEST_CODE = 12
+    private val permissionsRequestCode = 12
+    private val intentScheme = "package"
 
     private val weatherResponseObserver = Observer<ResponseWrapper<Response<WeatherResponse>>> {
         when (it) {
             is ResponseWrapper.Success -> setupInfo(it.value.body() as WeatherResponse)
             is ResponseWrapper.GenericError -> Toast.makeText(
                 this,
-                "Generic error: ${it.message}",
+                "${getString(R.string.generic_error)}: ${it.message}",
                 Toast.LENGTH_SHORT
             ).show()
             is ResponseWrapper.NetworkError -> Toast.makeText(
                 this,
-                "Network error!",
+                getString(R.string.network_error),
                 Toast.LENGTH_SHORT
             ).show()
         }
     }
 
     private val fetchWeatherIntervalObserver = Observer<Boolean> {
-        println("new weather ${Date().minutes}")
         updateWeather()
     }
     private var mFusedLocationClient: FusedLocationProviderClient? = null
@@ -140,16 +130,16 @@ class MainActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(
             this@MainActivity,
             arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
-            PERMISSIONS_REQUEST_CODE
+            permissionsRequestCode
         )
     }
 
     private fun requestPermissions() {
         Snackbar.make(
             constraint_layout_main_activity,
-            "Grant location permission?", Snackbar.LENGTH_INDEFINITE
+            getString(R.string.location_permission_question), Snackbar.LENGTH_INDEFINITE
         ).apply {
-            setAction("Yes") {
+            setAction(getString(R.string.yes)) {
                 startLocationPermissionRequest()
             }
             show()
@@ -161,20 +151,20 @@ class MainActivity : AppCompatActivity() {
         permissions: Array<String>,
         grantResults: IntArray
     ) {
-        if (requestCode == PERMISSIONS_REQUEST_CODE) {
+        if (requestCode == permissionsRequestCode) {
             when {
                 grantResults.isEmpty() -> Log.i("MainActivity", "User interaction was cancelled.")
                 grantResults.first() == PackageManager.PERMISSION_GRANTED -> getLastLocation()
                 else -> {
                     Snackbar.make(
                         constraint_layout_main_activity,
-                        "This app need location permission", Snackbar.LENGTH_INDEFINITE
+                        getString(R.string.location_permission_info), Snackbar.LENGTH_INDEFINITE
                     ).apply {
                         setAction("Grant") {
                             Intent().apply {
                                 action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
                                 val uri = Uri.fromParts(
-                                    "package",
+                                    intentScheme,
                                     BuildConfig.APPLICATION_ID, null
                                 )
                                 data = uri
@@ -202,7 +192,7 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     Snackbar.make(
                         constraint_layout_main_activity,
-                        "no_location_detected",
+                        getString(R.string.no_location_detected_info),
                         Snackbar.LENGTH_SHORT
                     )
                 }
