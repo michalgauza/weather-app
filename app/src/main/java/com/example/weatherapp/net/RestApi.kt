@@ -5,7 +5,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-const val WEATHER_API_KEY = "ab310a258f27682168646b0d3784225f"
+const val WEATHER_API_KEY = ""
 
 interface RestApi {
 
